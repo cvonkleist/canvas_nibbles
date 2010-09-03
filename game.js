@@ -73,7 +73,7 @@ function drawPlayer() {
   ctx.rect(playerX, playerY, 10, 10);
   ctx.closePath();
   ctx.fill();
-  for(i = 0; i < tailLength; i++) {
+  for(i = 0; i < oldX.length; i++) {
     ctx.beginPath();
     ctx.rect(oldX[i], oldY[i], 10, 10);
     ctx.closePath();
@@ -166,7 +166,7 @@ function draw() {
 // handle keys while game is running
 function onKeyDown(evt) {
   switch(evt.keyCode) {
-    case 32: tailLength += 1; break;
+    case 32: tailLength += 5; break;
     case 37: if(tailLength == 0 || direction != RIGHT) direction = LEFT; break;
     case 38: if(tailLength == 0 || direction != DOWN) direction = UP; break;
     case 39: if(tailLength == 0 || direction != LEFT) direction = RIGHT; break;
@@ -182,7 +182,7 @@ function detectItemCollisions() {
     itemPoints = ITEM_POINTS[type];
     if(x >= playerX - ITEM_WIDTH && x < playerX + PLAYER_WIDTH &&
       y >= playerY - ITEM_HEIGHT && y < playerY + PLAYER_HEIGHT) {
-      tailLength += 1;
+      tailLength += 5;
       itemX.splice(i, 1); itemY.splice(i, 1); itemType.splice(i, 1);
       itemCount -= 1;
       i -= 1;
